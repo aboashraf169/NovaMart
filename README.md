@@ -1,12 +1,40 @@
 # NovaMart 🛍️
 
+![Swift](https://img.shields.io/badge/Swift-6.0-orange?style=flat&logo=swift)
+![SwiftUI](https://img.shields.io/badge/SwiftUI-5.0-blue?style=flat&logo=swift)
+![iOS](https://img.shields.io/badge/iOS-17%2B-black?style=flat&logo=apple)
+![Xcode](https://img.shields.io/badge/Xcode-16%2B-147EFB?style=flat&logo=xcode)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+
 A modern, full-featured iOS e-commerce application built entirely with **SwiftUI** and Swift 6. NovaMart demonstrates real-world app architecture with a clean, glassmorphism-inspired design system, role-based access, and a rich shopping experience.
 
 ---
 
 ## Screenshots
 
-> Run the project in Xcode Simulator to explore the full UI.
+### Customer App
+
+| Home Screen | Product Detail | Cart & Checkout |
+|:-----------:|:--------------:|:---------------:|
+| ![Home](https://placehold.co/200x420/6E3AFF/FFFFFF?text=🏠+Home\nHero+Banner\nCategories\nFlash+Sale&font=sans) | ![Detail](https://placehold.co/200x420/00D4AA/FFFFFF?text=📦+Product\nImage+Carousel\nVariants\nAdd+to+Cart&font=sans) | ![Cart](https://placehold.co/200x420/FF6B35/FFFFFF?text=🛒+Cart\nPrice+Summary\nCoupon+Code\nCheckout&font=sans) |
+
+| Search | Wishlist | Orders |
+|:------:|:--------:|:------:|
+| ![Search](https://placehold.co/200x420/1A0A2E/FFFFFF?text=🔍+Search\nTrending\nRecent\nFilters&font=sans) | ![Wishlist](https://placehold.co/200x420/FF3B30/FFFFFF?text=❤️+Wishlist\nSaved+Items\nQuick+Add\nto+Cart&font=sans) | ![Orders](https://placehold.co/200x420/34C759/FFFFFF?text=📋+Orders\nOrder+Status\nTracking\nTimeline&font=sans) |
+
+### Auth & Onboarding
+
+| Login | Register | OTP Verification |
+|:-----:|:--------:|:----------------:|
+| ![Login](https://placehold.co/200x420/0A1628/FFFFFF?text=🔐+Login\nEmail+%26+Password\nBiometric\nFace+ID&font=sans) | ![Register](https://placehold.co/200x420/0D0A1A/FFFFFF?text=📝+Register\nFull+Name\nEmail\nPassword&font=sans) | ![OTP](https://placehold.co/200x420/1A0A2E/FFFFFF?text=✉️+OTP\n6-Digit+Code\nAuto+Paste\nResend&font=sans) |
+
+### Admin Dashboard
+
+| Overview | Product Manager | Add Product |
+|:--------:|:---------------:|:-----------:|
+| ![Admin](https://placehold.co/200x420/6E3AFF/FFFFFF?text=📊+Admin\nRevenue+Chart\nOrders+Chart\nStats+Grid&font=sans) | ![Products](https://placehold.co/200x420/9B59FF/FFFFFF?text=🗂️+Products\nList+%26+Search\nEdit+Delete\nBulk+Actions&font=sans) | ![Add](https://placehold.co/200x420/FF6B35/FFFFFF?text=➕+Add+Product\nPhoto+Picker\nVariants\nInventory&font=sans) |
+
+> **Note:** Replace placeholder images above with actual simulator screenshots after running the project.
 
 ---
 
@@ -106,7 +134,7 @@ NovaMart/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/mido-mj/NovaMart.git
+   git clone https://github.com/aboashraf169/NovaMart.git
    cd NovaMart
    ```
 
@@ -132,11 +160,20 @@ NovaMart/
 
 NovaMart uses a custom design system built on top of SwiftUI:
 
-- **Colors**: Purple primary (`#6E3AFF`), teal secondary (`#00D4AA`), orange accent (`#FF6B35`)
-- **Typography**: System font with semantic weight/size scale
-- **Spacing**: 8pt grid (`xs=4, sm=8, md=16, lg=24, xl=32, xxl=48`)
+| Token | Value |
+|---|---|
+| Primary color | `#6E3AFF` (Purple) |
+| Secondary color | `#00D4AA` (Teal) |
+| Accent color | `#FF6B35` (Orange) |
+| Success | `#34C759` |
+| Error | `#FF3B30` |
+| Base spacing unit | 8pt grid |
+| Corner radius (card) | 16pt continuous |
+| Corner radius (large) | 24pt continuous |
+
 - **Glass**: `.glassCard()`, `.buttonStyle(.glass)` — `ultraThinMaterial` based glassmorphism
 - **Animations**: Spring-based transitions, staggered list appearance, bouncy micro-interactions
+- **Typography**: System font with semantic weight/size scale (`display`, `title1–3`, `body`, `label`, `caption`, `price`)
 
 ---
 
@@ -146,4 +183,4 @@ MIT License — free to use for personal and commercial projects.
 
 ---
 
-Built with SwiftUI by [mido-mj](https://github.com/mido-mj)
+Built with SwiftUI by [aboashraf169](https://github.com/aboashraf169)
