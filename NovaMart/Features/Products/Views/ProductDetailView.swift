@@ -387,3 +387,10 @@ struct StickyAddToCartBar: View {
         .padding(.bottom, AppSpacing.sm)
     }
 }
+
+#Preview {
+    NavigationStack {
+        ProductDetailView(product: Product.samples[0])
+    }
+    .environment(AppState())
+}

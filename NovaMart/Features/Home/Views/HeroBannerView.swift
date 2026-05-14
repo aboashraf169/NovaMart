@@ -243,3 +243,14 @@ private struct Herobadge: View {
             .background(color, in: Capsule())
     }
 }
+
+#Preview {
+    NavigationStack {
+        HeroBannerView(
+            products: Array(Product.samples.prefix(4)),
+            namespace: Namespace().wrappedValue
+        )
+        .frame(height: 420)
+    }
+    .environment(AppState())
+}

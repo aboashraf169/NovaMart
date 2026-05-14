@@ -59,3 +59,10 @@ struct GlassSearchBar: View {
         }
     }
 }
+
+#Preview {
+    @Previewable @State var text = ""
+    GlassSearchBar(text: $text, placeholder: "Search products...")
+        .padding()
+        .background(Color(UIColor.systemGroupedBackground))
+}

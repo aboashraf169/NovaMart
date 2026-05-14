@@ -72,3 +72,10 @@ struct EditProfileView: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        EditProfileView()
+    }
+    .environment(AppState())
+}

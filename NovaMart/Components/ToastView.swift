@@ -60,3 +60,13 @@ struct ToastView: View {
         }
     }
 }
+
+#Preview {
+    let state = AppState()
+    state.toast = ToastMessage(message: "Added to cart!", style: .success)
+    return ZStack(alignment: .bottom) {
+        Color(UIColor.systemBackground)
+        ToastView()
+    }
+    .environment(state)
+}

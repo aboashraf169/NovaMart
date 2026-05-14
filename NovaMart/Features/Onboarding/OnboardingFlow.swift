@@ -143,3 +143,8 @@ struct OnboardingPageView: View {
         }
     }
 }
+
+#Preview {
+    OnboardingFlow()
+        .environment(AppState())
+}

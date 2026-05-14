@@ -69,4 +69,9 @@ private struct FeaturedCard: View {
     }
 }
 
-
+#Preview {
+    NavigationStack {
+        FeaturedCollectionView(products: Product.samples.filter { $0.isFeatured })
+    }
+    .environment(AppState())
+}

@@ -13,6 +13,19 @@ struct LoadingShimmer: View {
     }
 }
 
+#Preview("List Shimmer") {
+    LoadingShimmer()
+}
+
+#Preview("Grid Shimmer") {
+    GridShimmer(columns: 2)
+}
+
+#Preview("Shimmer Box") {
+    ShimmerBox(width: 200, height: 120, cornerRadius: 12)
+        .padding()
+}
+
 struct ShimmerRow: View {
     var body: some View {
         HStack(spacing: AppSpacing.md) {

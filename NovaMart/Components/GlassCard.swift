@@ -24,3 +24,17 @@ struct GlassCard<Content: View>: View {
             .glassCard(cornerRadius: cornerRadius, tint: tint)
     }
 }
+
+#Preview {
+    GlassCard {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Glass Card")
+                .font(.headline)
+            Text("This is a reusable glass-styled card component.")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+    }
+    .padding()
+    .background(Color(UIColor.systemGroupedBackground))
+}

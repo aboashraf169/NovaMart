@@ -83,3 +83,13 @@ struct CornerRibbon: View {
             .background(color)
     }
 }
+#Preview {
+    VStack(spacing: 16) {
+        GlassBadge(text: "NEW", icon: "sparkles", color: AppTheme.Colors.primary)
+        GlassBadge(text: "SALE", icon: "tag.fill", color: AppTheme.Colors.accent, size: .large)
+        NotificationBadge(count: 5)
+        CornerRibbon(text: "HOT", color: .red)
+    }
+    .padding()
+}
+

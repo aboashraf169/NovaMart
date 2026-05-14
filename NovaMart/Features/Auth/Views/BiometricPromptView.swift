@@ -130,3 +130,8 @@ struct BiometricPromptView: View {
         }
     }
 }
+
+#Preview {
+    BiometricPromptView(onAuthenticated: {}, onSkip: {})
+        .environment(AppState())
+}

@@ -41,11 +41,38 @@ final class HomeViewModel {
 
     private func populate(with products: [Product]) {
         categories = Category.allCategories
-        heroProducts = Array(products.prefix(4))
-        flashSaleProducts = products.filter { $0.isFlashSale }
+
+        // 1. Hero — featured products (up to 6)
+        let featured = products.filter { $0.isFeatured }
+        heroProducts = Array(featured.prefix(6))
+        let heroIDs = Set(heroProducts.map(\.id))
+
+        // 2. Flash sale — active deals, excluding hero
+        flashSaleProducts = products.filter { $0.isFlashSale && !heroIDs.contains($0.id) }
         flashSaleEndDate = products.compactMap(\.flashSaleEnds).min()
-        featuredProducts = products.filter { $0.isFeatured }
-        trendingProducts = Array(products.sorted { $0.soldCount > $1.soldCount }.prefix(8))
-        personalizedProducts = Array(products.shuffled().prefix(6))
+        let flashIDs = Set(flashSaleProducts.map(\.id))
+
+        // 3. Featured collection — remaining featured not already in hero
+        featuredProducts = featured.filter { !heroIDs.contains($0.id) }
+        let featuredIDs = Set(featuredProducts.map(\.id))
+
+        // 4. Trending — top sellers excluding above sections
+        let usedIDs = heroIDs.union(flashIDs).union(featuredIDs)
+        trendingProducts = Array(
+            products
+                .filter { !usedIDs.contains($0.id) }
+                .sorted { $0.soldCount > $1.soldCount }
+                .prefix(8)
+        )
+        let trendingIDs = Set(trendingProducts.map(\.id))
+
+        // 5. Picked For You — remaining products not shown anywhere else
+        let allUsedIDs = usedIDs.union(trendingIDs)
+        personalizedProducts = Array(
+            products
+                .filter { !allUsedIDs.contains($0.id) }
+                .shuffled()
+                .prefix(8)
+        )
     }
 }

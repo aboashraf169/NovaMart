@@ -14,12 +14,6 @@ struct MainTabView: View {
             .tag(Tab.home)
 
             NavigationStack {
-                SearchView()
-            }
-            .tabItem { Label("Search", systemImage: "magnifyingglass") }
-            .tag(Tab.search)
-
-            NavigationStack {
                 WishlistView()
             }
             .tabItem { Label("Wishlist", systemImage: "heart.fill") }

@@ -99,3 +99,11 @@ struct FlashSaleCard: View {
     }
 }
 
+#Preview {
+    FlashSaleView(
+        products: Product.samples.filter { $0.isFlashSale },
+        endDate: Date.now.addingTimeInterval(3600 * 6)
+    )
+    .environment(AppState())
+}
+

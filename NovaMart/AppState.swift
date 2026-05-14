@@ -185,7 +185,7 @@ final class AppState {
 
 // MARK: - Tab
 enum Tab: String, CaseIterable, Hashable {
-    case home, search, wishlist, cart, orders, profile
+    case home, wishlist, cart, orders, profile
 }
 
 // MARK: - Toast Message

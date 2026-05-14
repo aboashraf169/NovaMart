@@ -105,3 +105,8 @@ struct Triangle: Shape {
         }
     }
 }
+
+#Preview("Active") {
+    ConfettiView(isActive: true)
+        .frame(width: 300, height: 400)
+}

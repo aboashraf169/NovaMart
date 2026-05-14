@@ -68,3 +68,9 @@ struct QuickAddSheet: View {
         .padding(AppSpacing.screenPadding)
     }
 }
+
+#Preview {
+    @Previewable @State var isPresented = true
+    QuickAddSheet(product: Product.samples[0], isPresented: $isPresented)
+        .environment(AppState())
+}

@@ -255,3 +255,8 @@ struct FilterToggle: View {
         .glassCard()
     }
 }
+
+#Preview {
+    @Previewable @State var filter = SearchFilter.empty
+    FilterSheetView(filter: $filter, onApply: {})
+}

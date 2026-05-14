@@ -128,3 +128,8 @@ struct LowStockAlert: View {
         .glassCard(tint: AppTheme.Colors.warning)
     }
 }
+
+#Preview {
+    AdminDashboardView()
+        .environment(AppState())
+}

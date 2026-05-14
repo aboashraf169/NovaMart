@@ -93,3 +93,12 @@ struct ImageCarouselView: View {
         }
     }
 }
+
+#Preview {
+    @Previewable @State var index = 0
+    ImageCarouselView(
+        images: Product.samples[0].images,
+        selectedIndex: $index
+    )
+    .frame(height: 320)
+}

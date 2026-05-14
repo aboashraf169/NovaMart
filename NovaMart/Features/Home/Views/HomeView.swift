@@ -43,19 +43,19 @@ struct HomeView: View {
         .background(AnimatedMeshBackground())
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    appState.selectedTab = .search
-                } label: {
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationLink(destination: SearchView()) {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 16, weight: .semibold))
                 }
-                .buttonStyle(.glass)
                 .accessibilityLabel("Search")
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NotificationBellButton()
             }
+        }
+        .navigationDestination(for: Product.self) { product in
+            ProductDetailView(product: product)
         }
         .refreshable {
             await viewModel.refresh()
@@ -63,6 +63,7 @@ struct HomeView: View {
         .task {
             await viewModel.load()
         }
+        .ignoresSafeArea()
     }
 }
 
@@ -83,7 +84,13 @@ struct NotificationBellButton: View {
                 }
             }
         }
-        .buttonStyle(.glass)
         .accessibilityLabel("Notifications, \(appState.notificationCount) unread")
     }
+}
+
+#Preview {
+    NavigationStack {
+        HomeView()
+    }
+    .environment(AppState())
 }

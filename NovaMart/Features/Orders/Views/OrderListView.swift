@@ -142,3 +142,10 @@ struct OrderListCard: View {
         .glassCard()
     }
 }
+
+#Preview {
+    NavigationStack {
+        OrderListView()
+    }
+    .environment(AppState())
+}

@@ -58,3 +58,17 @@ struct WishlistButton: View {
         .accessibilityAddTraits(.isButton)
     }
 }
+
+#Preview {
+    VStack(spacing: 16) {
+        HapticButton(feedback: .impact(.medium)) {
+        } label: {
+            Text("Haptic Button")
+                .padding()
+                .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+        }
+        WishlistButton(productID: UUID())
+    }
+    .padding()
+    .environment(AppState())
+}

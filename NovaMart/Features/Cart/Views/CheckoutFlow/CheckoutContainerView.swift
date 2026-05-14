@@ -199,3 +199,8 @@ struct CheckoutNavBar: View {
         .backgroundExtensionEffect()
     }
 }
+
+#Preview {
+    CheckoutContainerView()
+        .environment(AppState())
+}

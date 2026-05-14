@@ -67,3 +67,23 @@ struct ViewStateWrapper<T: Sendable, Content: View, EmptyContent: View>: View {
         }
     }
 }
+
+#Preview("Loaded") {
+    ViewStateWrapper(state: ViewState<[String]>.loaded(["Item 1", "Item 2"])) { items in
+        VStack {
+            ForEach(items, id: \.self) { Text($0) }
+        }
+    }
+}
+
+#Preview("Loading") {
+    ViewStateWrapper(state: ViewState<[String]>.loading) { _ in
+        EmptyView()
+    }
+}
+
+#Preview("Empty") {
+    ViewStateWrapper(state: ViewState<[String]>.empty) { _ in
+        EmptyView()
+    }
+}

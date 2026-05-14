@@ -155,3 +155,8 @@ struct AuthField: View {
         .animation(.snappy, value: error)
     }
 }
+
+#Preview {
+    LoginView(viewModel: AuthViewModel())
+        .environment(AppState())
+}

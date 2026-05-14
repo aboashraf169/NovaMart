@@ -212,3 +212,20 @@ struct CartItemRow: View {
         }
     }
 }
+
+#Preview("Empty Cart") {
+    NavigationStack {
+        CartView()
+    }
+    .environment(AppState())
+}
+
+#Preview("Cart with Items") {
+    let state = AppState()
+    state.addToCart(Product.samples[0])
+    state.addToCart(Product.samples[1])
+    return NavigationStack {
+        CartView()
+    }
+    .environment(state)
+}

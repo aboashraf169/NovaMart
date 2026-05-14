@@ -67,3 +67,8 @@ struct SplashView: View {
         }
     }
 }
+
+#Preview {
+    SplashView()
+        .environment(AppState())
+}

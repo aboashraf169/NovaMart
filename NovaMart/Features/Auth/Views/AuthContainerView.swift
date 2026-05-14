@@ -91,3 +91,8 @@ struct AuthTabButton: View {
         .buttonStyle(.plain)
     }
 }
+
+#Preview {
+    AuthContainerView()
+        .environment(AppState())
+}

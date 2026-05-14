@@ -25,6 +25,9 @@
     "(%@)" : {
 
     },
+    "(%lld)" : {
+
+    },
     "#%lld" : {
 
     },
@@ -166,6 +169,9 @@
 
     },
     "$" : {
+
+    },
+    "$%@" : {
 
     },
     "$%lld" : {
@@ -947,6 +953,9 @@
           }
         }
       }
+    },
+    "Favourite" : {
+
     },
     "Featured" : {
 
@@ -1930,9 +1939,6 @@
     "Search field" : {
 
     },
-    "Searching..." : {
-
-    },
     "See All" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2289,6 +2295,9 @@
       }
     },
     "Type" : {
+
+    },
+    "Unfavourite" : {
 
     },
     "Unlimited" : {

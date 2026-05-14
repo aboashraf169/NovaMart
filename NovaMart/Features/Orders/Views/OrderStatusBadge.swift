@@ -17,3 +17,14 @@ struct OrderStatusBadge: View {
         .background(status.color.opacity(0.12), in: Capsule())
     }
 }
+
+#Preview {
+    VStack(spacing: 12) {
+        OrderStatusBadge(status: .pending)
+        OrderStatusBadge(status: .confirmed)
+        OrderStatusBadge(status: .shipped)
+        OrderStatusBadge(status: .delivered)
+        OrderStatusBadge(status: .cancelled)
+    }
+    .padding()
+}

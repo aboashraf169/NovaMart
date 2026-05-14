@@ -38,6 +38,25 @@ struct User: Identifiable, Codable, Sendable, Hashable {
         guard tierMax > tierMin else { return 1.0 }
         return Double(current - tierMin) / Double(tierMax - tierMin)
     }
+
+    static let sample = User(
+        id: UUID(),
+        name: "Alex Johnson",
+        email: "alex@example.com",
+        phone: "+1 555-0100",
+        avatarURL: nil,
+        role: .customer,
+        loyaltyPoints: 1250,
+        loyaltyTier: .silver,
+        addresses: [],
+        defaultAddressID: nil,
+        paymentMethods: [],
+        defaultPaymentID: nil,
+        notificationPreferences: NotificationPreferences(),
+        language: "en",
+        createdAt: Date(),
+        lastLoginAt: Date()
+    )
 }
 
 enum UserRole: String, Codable, Sendable {

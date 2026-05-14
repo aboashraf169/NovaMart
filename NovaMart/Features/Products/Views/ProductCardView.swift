@@ -181,3 +181,16 @@ struct MasonryProductGrid: View {
         }
     }
 }
+
+#Preview("Product Card") {
+    NavigationStack {
+        HStack {
+            ProductCardView(product: Product.samples[0])
+                .frame(width: 180)
+            ProductCardView(product: Product.samples[1], isTall: true)
+                .frame(width: 180)
+        }
+        .padding()
+    }
+    .environment(AppState())
+}

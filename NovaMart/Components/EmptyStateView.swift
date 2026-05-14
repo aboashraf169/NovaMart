@@ -35,6 +35,20 @@ struct EmptyStateView: View {
     }
 }
 
+#Preview("Empty State") {
+    EmptyStateView(
+        icon: "tray.fill",
+        title: "Nothing Here",
+        message: "Check back later for new items.",
+        action: {},
+        actionTitle: "Refresh"
+    )
+}
+
+#Preview("Error Retry") {
+    ErrorRetryView(error: .unknown("Connection failed"), onRetry: {})
+}
+
 struct ErrorRetryView: View {
     let error: AppError
     var onRetry: (() -> Void)?

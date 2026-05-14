@@ -136,12 +136,12 @@ final class AuthViewModel {
     }
 
     // MARK: - Demo user
-    private func makeDemoUser(name: String = "Alex Johnson", email: String = "alex@example.com") -> User {
-        // Admin credentials: admin@novamart.com / any password
-        let resolvedRole: UserRole = email.lowercased() == "admin@novamart.com" ? .admin : .customer
+    private func makeDemoUser(name: String = "Mohammed Mj", email: String = "alex@example.com") -> User {
+        // Admin credentials: admin@gmail.com / any password
+        let resolvedRole: UserRole = email.lowercased() == "admin@gmail.com" ? .admin : .customer
         return User(
             id: UUID(),
-            name: resolvedRole == .admin ? "Admin" : name,
+            name: resolvedRole == .admin ? "Mohammed Mj" : name,
             email: email,
             phone: "+1 (415) 555-0100",
             avatarURL: nil,

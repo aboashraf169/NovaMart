@@ -208,3 +208,8 @@ private struct OTPDigitField: View {
             .animation(.snappy, value: isFocused)
     }
 }
+
+#Preview {
+    OTPVerificationView(destination: "user@example.com", onVerified: {})
+        .environment(AppState())
+}

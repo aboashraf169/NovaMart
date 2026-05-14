@@ -104,3 +104,10 @@ struct SectionHeader: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        CategoryScrollView(categories: Category.allCategories)
+    }
+    .environment(AppState())
+}

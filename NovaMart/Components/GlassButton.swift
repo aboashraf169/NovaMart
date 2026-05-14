@@ -122,3 +122,14 @@ struct FloatingActionButton: View {
         .buttonStyle(ScalePressEffect(scale: 0.92))
     }
 }
+
+#Preview {
+    VStack(spacing: 16) {
+        GlassButton("Add to Cart", icon: "bag.badge.plus", style: .primary) {}
+        GlassButton("Save", icon: "heart.fill", style: .secondary) {}
+        GlassButton("Loading...", style: .primary, isLoading: true) {}
+        FloatingActionButton(icon: "plus") {}
+    }
+    .padding()
+    .background(Color(UIColor.systemGroupedBackground))
+}

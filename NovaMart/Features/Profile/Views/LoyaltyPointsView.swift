@@ -310,3 +310,10 @@ struct PieSlice: Shape {
         return path
     }
 }
+
+#Preview {
+    NavigationStack {
+        LoyaltyPointsView(user: User.sample)
+    }
+    .environment(AppState())
+}

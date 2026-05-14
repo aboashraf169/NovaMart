@@ -81,3 +81,10 @@ struct ProductListRow: View {
         .buttonStyle(.plain)
     }
 }
+
+#Preview {
+    NavigationStack {
+        ProductGridView()
+    }
+    .environment(AppState())
+}

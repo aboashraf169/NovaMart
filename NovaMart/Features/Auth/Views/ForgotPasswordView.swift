@@ -70,3 +70,8 @@ struct ForgotPasswordView: View {
         }
     }
 }
+
+#Preview {
+    ForgotPasswordView(viewModel: AuthViewModel())
+        .environment(AppState())
+}

@@ -92,3 +92,10 @@ struct ReturnRequestView: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        ReturnRequestView(order: Order.samples[0])
+    }
+    .environment(AppState())
+}

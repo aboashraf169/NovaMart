@@ -40,3 +40,12 @@ extension RatingStarsView {
         self.size = size
     }
 }
+
+#Preview {
+    VStack(spacing: 12) {
+        RatingStarsView(rating: 4.8, maxRating: 5, showValue: true)
+        RatingStarsView(rating: 3.5, size: 16)
+        RatingStarsView(rating: 5.0, maxRating: 5, size: 20, color: .orange)
+    }
+    .padding()
+}

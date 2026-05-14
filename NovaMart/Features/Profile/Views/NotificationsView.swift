@@ -68,3 +68,10 @@ struct NotifToggle: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        NotificationsSettingsView()
+    }
+    .environment(AppState())
+}

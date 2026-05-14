@@ -176,3 +176,10 @@ struct OrderInfoSection<Content: View>: View {
         .glassCard()
     }
 }
+
+#Preview {
+    NavigationStack {
+        OrderDetailView(order: Order.samples[0])
+    }
+    .environment(AppState())
+}

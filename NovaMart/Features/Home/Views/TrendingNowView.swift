@@ -83,3 +83,10 @@ private struct TrendingCard: View {
         .buttonStyle(ScalePressEffect())
     }
 }
+
+#Preview {
+    NavigationStack {
+        TrendingNowView(products: Array(Product.samples.prefix(6)))
+    }
+    .environment(AppState())
+}

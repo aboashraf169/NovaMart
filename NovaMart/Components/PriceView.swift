@@ -63,3 +63,13 @@ struct DiscountBadge: View {
             .background(AppTheme.Colors.accent, in: Capsule())
     }
 }
+
+#Preview {
+    VStack(alignment: .leading, spacing: 16) {
+        PriceView(price: 299.99, compareAtPrice: 449.99, size: .large)
+        PriceView(price: 89.00, compareAtPrice: nil, size: .medium)
+        PriceView(price: 34.99, compareAtPrice: 49.99, size: .small)
+        DiscountBadge(percent: 33)
+    }
+    .padding()
+}

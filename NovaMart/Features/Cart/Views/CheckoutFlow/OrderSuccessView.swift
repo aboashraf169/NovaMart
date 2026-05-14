@@ -117,3 +117,8 @@ struct OrderSuccessRow: View {
         }
     }
 }
+
+#Preview {
+    OrderSuccessView(order: Order.samples[0])
+        .environment(AppState())
+}

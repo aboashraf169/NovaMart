@@ -229,3 +229,10 @@ struct AddEditAddressView: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        AddressBookView()
+    }
+    .environment(AppState())
+}

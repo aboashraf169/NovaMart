@@ -221,3 +221,12 @@ struct SizePill: View {
         .accessibilityLabel("\(size)\(isAvailable ? "" : ", unavailable")\(isSelected ? ", selected" : "")")
     }
 }
+
+#Preview {
+    @Previewable @State var selected: ProductVariant? = nil
+    VariantSelectorView(
+        product: Product.samples[0],
+        selectedVariant: $selected
+    )
+    .padding()
+}

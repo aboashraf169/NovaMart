@@ -163,3 +163,10 @@ struct TimelineRow: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        OrderTrackingView(order: Order.samples[0])
+    }
+    .environment(AppState())
+}

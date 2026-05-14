@@ -63,3 +63,12 @@ struct RelatedProductCard: View {
         .buttonStyle(.plain)
     }
 }
+
+#Preview {
+    NavigationStack {
+        ScrollView {
+            RelatedProductsView(productID: Product.samples[0].id)
+        }
+    }
+    .environment(AppState())
+}

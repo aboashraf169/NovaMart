@@ -147,3 +147,10 @@ struct NotificationRow: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        NotificationCenterView()
+    }
+    .environment(AppState())
+}

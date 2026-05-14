@@ -317,6 +317,13 @@ struct LanguagePickerRow: View {
     }
 }
 
+#Preview {
+    NavigationStack {
+        ProfileView()
+    }
+    .environment(AppState())
+}
+
 struct ProfileRow<Trailing: View>: View {
     let icon: String
     let label: String

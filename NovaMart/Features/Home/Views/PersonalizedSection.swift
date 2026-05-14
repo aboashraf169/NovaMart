@@ -63,3 +63,10 @@ private struct PersonalizedCard: View {
         .buttonStyle(ScalePressEffect())
     }
 }
+
+#Preview {
+    NavigationStack {
+        PersonalizedSection(products: Array(Product.samples.prefix(6)))
+    }
+    .environment(AppState())
+}

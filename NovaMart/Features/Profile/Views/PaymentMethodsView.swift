@@ -83,3 +83,10 @@ struct PaymentMethodRow: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack {
+        PaymentMethodsView()
+    }
+    .environment(AppState())
+}

@@ -167,3 +167,15 @@ struct AllReviewsView: View {
         .navigationBarTitleDisplayMode(.large)
     }
 }
+
+#Preview {
+    NavigationStack {
+        ScrollView {
+            ReviewsSection(
+                productID: Product.samples[0].id,
+                rating: 4.8,
+                reviewCount: 1247
+            )
+        }
+    }
+}

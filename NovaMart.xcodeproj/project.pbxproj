@@ -88,9 +88,10 @@
 		A2EDA684F56B5121B63068BF /* PaymentMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C9337849DFE6ED25A39304 /* PaymentMethodsView.swift */; };
 		A7D496EE40C3EBA169DBC5DF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF87A627211338E8CC7BC60 /* ProfileView.swift */; };
 		A7EF464A9C1B30B8D05B4F2A /* RatingStarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8440FACBACBEC2FFC3119B18 /* RatingStarsView.swift */; };
-		ABEB036766576B3425579FC9 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83647619D32304278EA358EC /* WishlistView.swift */; };
 		AD48CD232FA01D0300730815 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AD48CD222FA01D0200730815 /* Localizable.xcstrings */; };
 		AD55CBDF6824ACFD3F554846 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EAAA0C980E74689F0ABDAD /* ProfileViewModel.swift */; };
+		ADA03D472FB616B00020C373 /* WishlistCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA03D462FB616B00020C373 /* WishlistCardView.swift */; };
+		ADA03D492FB616BB0020C373 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA03D482FB616BB0020C373 /* WishlistView.swift */; };
 		AE1B3E929692ED4F0D21CD7B /* OrderSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915DABDECF873949C0E92932 /* OrderSuccessView.swift */; };
 		B032F844CD4FD61BFFB3EE0C /* AppAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4E4897F937B8B0BB5B10FA /* AppAnimations.swift */; };
 		B250EF2FCB5F7715B4F1B81C /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527210F28DCE060167DECD24 /* Coupon.swift */; };
@@ -189,7 +190,6 @@
 		7A7AEFC7D2D67C18701FBBC2 /* BiometricPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricPromptView.swift; sourceTree = "<group>"; };
 		7BE6B20DF8F7FCAB96BD1EE6 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		835F21184AC24A5C4729F2C1 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
-		83647619D32304278EA358EC /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		83BCBA5665B7541F5E4A63FE /* CategoryScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryScrollView.swift; sourceTree = "<group>"; };
 		8440FACBACBEC2FFC3119B18 /* RatingStarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingStarsView.swift; sourceTree = "<group>"; };
 		84DB850C7F401AA9004BABE5 /* NovaMartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovaMartApp.swift; sourceTree = "<group>"; };
@@ -214,6 +214,8 @@
 		ABCA61C39F3EF06FF1458C67 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		ACFD410F29F5614EE447B15D /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		AD48CD222FA01D0200730815 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		ADA03D462FB616B00020C373 /* WishlistCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistCardView.swift; sourceTree = "<group>"; };
+		ADA03D482FB616BB0020C373 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		B139A3E54B19294427A8123A /* FlashSaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSaleView.swift; sourceTree = "<group>"; };
 		B1C9337849DFE6ED25A39304 /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
 		B4CB4E63DBF42C9432DA3244 /* TrendingNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingNowView.swift; sourceTree = "<group>"; };
@@ -479,8 +481,9 @@
 		88328BAE9896541CEE4DF0BB /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
-				83647619D32304278EA358EC /* WishlistView.swift */,
 				9D48D05BEE1673A4654392AD /* WishlistViewModel.swift */,
+				ADA03D462FB616B00020C373 /* WishlistCardView.swift */,
+				ADA03D482FB616BB0020C373 /* WishlistView.swift */,
 			);
 			path = Wishlist;
 			sourceTree = "<group>";
@@ -850,6 +853,7 @@
 				BECE686BCB921803D66301D6 /* SearchFilter.swift in Sources */,
 				7266FBF869DC464B86D736F3 /* SearchService.swift in Sources */,
 				CA536E577320A12E0DFB1668 /* SearchView.swift in Sources */,
+				ADA03D492FB616BB0020C373 /* WishlistView.swift in Sources */,
 				F0C8BD18148BF53B8ECA87D7 /* SearchViewModel.swift in Sources */,
 				96EB167CFF26588EEC44F36D /* SplashView.swift in Sources */,
 				0B03E4E4B21DC770A6837A5E /* StatsGridView.swift in Sources */,
@@ -862,9 +866,9 @@
 				4FB9A06416CFEDF664BE0928 /* VariantSelectorView.swift in Sources */,
 				B43D2DC46A0AC328722A73E7 /* View+Glass.swift in Sources */,
 				F044D3EB1A168DCEBCE23AEA /* View+Haptics.swift in Sources */,
+				ADA03D472FB616B00020C373 /* WishlistCardView.swift in Sources */,
 				5741990B8EF312EE17714A13 /* ViewStateWrapper.swift in Sources */,
 				6C6474BFF88D409FB8C2D3BD /* WishlistItem.swift in Sources */,
-				ABEB036766576B3425579FC9 /* WishlistView.swift in Sources */,
 				3AC868E1A6FC9CB6EBDEB04F /* WishlistViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

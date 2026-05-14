@@ -126,3 +126,8 @@ struct PasswordStrengthView: View {
         }
     }
 }
+
+#Preview {
+    RegisterView(viewModel: AuthViewModel())
+        .environment(AppState())
+}

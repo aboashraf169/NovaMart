@@ -5,36 +5,37 @@ struct SearchView: View {
     @FocusState private var isSearchFocused: Bool
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: AppSpacing.lg) {
-                // Search bar
-                GlassSearchBar(
-                    text: $viewModel.query,
-                    placeholder: "Search products, brands...",
-                    onSubmit: { viewModel.submitSearch() },
-                    isFocused: false
-                )
-                .padding(.horizontal, AppSpacing.screenPadding)
-                .onChange(of: viewModel.query) { _, newValue in
-                    Task { await viewModel.performSearch() }
-                }
+        VStack(spacing: 0) {
+            // Search bar — always visible at top
+            GlassSearchBar(
+                text: $viewModel.query,
+                placeholder: "Search products, brands...",
+                onSubmit: { viewModel.submitSearch() },
+                isFocused: false
+            )
+            .padding(.horizontal, AppSpacing.screenPadding)
+            .padding(.top, AppSpacing.md)
+            .padding(.bottom, AppSpacing.sm)
+            .onChange(of: viewModel.query) { _, _ in
+                Task { await viewModel.performSearch() }
+            }
 
-                // Content
-                if viewModel.query.isEmpty {
-                    // Empty state: show recents + trending
+            // Content
+            if viewModel.query.isEmpty {
+                ScrollView {
                     VStack(spacing: AppSpacing.xl) {
                         if !viewModel.recentSearches.isEmpty {
                             RecentSearchesView(viewModel: viewModel)
                         }
                         TrendingSearchesView(viewModel: viewModel)
                     }
-                } else {
-                    SearchResultsView(viewModel: viewModel)
+                    .padding(.top, AppSpacing.md)
                 }
+            } else {
+                SearchResultsView(viewModel: viewModel)
             }
-            .padding(.top, AppSpacing.md)
         }
-        .background(AnimatedMeshBackground())
+        .background(Color(UIColor.systemGroupedBackground).ignoresSafeArea())
         .navigationTitle("Search")
         .navigationBarTitleDisplayMode(.large)
     }
@@ -142,25 +143,27 @@ struct SearchResultsView: View {
     var body: some View {
         switch viewModel.viewState {
         case .loading:
-            ProgressView("Searching...")
-                .padding()
+            List {
+                ForEach(0..<8, id: \.self) { _ in
+                    SearchRowShimmer()
+                }
+            }
+            .listStyle(.insetGrouped)
         case .loaded(let products):
-            VStack(alignment: .leading, spacing: AppSpacing.md) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text("\(products.count) results for \"\(viewModel.query)\"")
                     .font(AppTheme.Typography.caption)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, AppSpacing.screenPadding)
+                    .padding(.bottom, AppSpacing.sm)
 
-                LazyVGrid(
-                    columns: [GridItem(.flexible(), spacing: AppSpacing.gridSpacing), GridItem(.flexible(), spacing: AppSpacing.gridSpacing)],
-                    spacing: AppSpacing.gridSpacing
-                ) {
-                    ForEach(Array(products.enumerated()), id: \.element.id) { index, product in
-                        ProductCardView(product: product, isTall: index % 3 == 0)
-                            .staggeredAppear(index: index, delay: 0.04)
+                List {
+                    ForEach(products) { product in
+                        SearchProductRow(product: product)
                     }
                 }
-                .padding(.horizontal, AppSpacing.screenPadding)
+                .listStyle(.insetGrouped)
+                .frame(maxHeight: .infinity)
             }
         case .empty:
             VStack(spacing: AppSpacing.lg) {
@@ -202,6 +205,148 @@ struct SearchResultsView: View {
                 Task { await viewModel.performSearch() }
             }
         }
+    }
+}
+
+// MARK: - Search Product Row
+
+struct SearchProductRow: View {
+    let product: Product
+    @Environment(AppState.self) private var appState
+
+    var body: some View {
+        NavigationLink(destination: ProductDetailView(product: product))
+        {
+            HStack(spacing: 8) {
+            // Thumnail
+                AsyncCachedImage(url: product.primaryImage?.url)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: 100,maxHeight: 100)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                Spacer()
+                // Details
+                VStack(alignment: .leading, spacing: 3) {
+                    // Brand + wishlist toggle
+                    HStack(alignment: .top) {
+                        Text(product.brand)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        Button {
+                            appState.toggleWishlist(productID: product.id)
+                            HapticService.shared.play(.impact(.light))
+                        } label: {
+                            Image(systemName: appState.isWishlisted(product.id) ? "heart.fill" : "heart")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundStyle(.pink)
+                        }
+                        .buttonStyle(ScalePressEffect())
+                    }
+
+                        Text(product.name)
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.primary)
+                            .lineLimit(2)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+           
+
+                    HStack(spacing: 3) {
+                        RatingStarsView(rating: product.rating, size: 10)
+                        Text(String(format: "%.1f", product.rating))
+                            .font(.caption2)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.secondary)
+                        Text("(\(product.reviewCount))")
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                    }
+
+                    Spacer(minLength: 4)
+
+                    HStack(alignment: .center) {
+                        HStack(alignment: .center, spacing: 10) {
+                            Text("$\(product.price, format: .number.precision(.fractionLength(2)))")
+                                .font(.callout)
+                                .fontWeight(.bold)
+                                .foregroundStyle(
+                                    product.compareAtPrice != nil
+                                    ? Color.red
+                                    : AppTheme.Colors.primary
+                                )
+                            if let compare = product.compareAtPrice {
+                                Text("$\(compare, format: .number.precision(.fractionLength(2)))")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.tertiary)
+                                    .strikethrough()
+                            }
+                        }
+                        Spacer()
+                        // Add to Cart — compact pill
+                        Button {
+                            appState.addToCart(product)
+                            HapticService.shared.play(.notification(.success))
+                        } label: {
+                                Image(systemName: "bag.badge.plus")
+                                    .font(.system(size: 15, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 7)
+                            .background(
+                                product.isOutOfStock ? Color.secondary : AppTheme.Colors.primary,
+                                in: Capsule()
+                            )
+                        }
+                        .buttonStyle(ScalePressEffect())
+                        .disabled(product.isOutOfStock)
+                    }
+                }
+            }
+       
+        }
+        .frame(maxWidth: .infinity)
+        .buttonStyle(.plain)
+        .padding(.vertical, 4)
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button {
+                appState.toggleWishlist(productID: product.id)
+                HapticService.shared.play(.impact(.medium))
+            } label: {
+                Label(
+                    appState.isWishlisted(product.id) ? "Unfavourite" : "Favourite",
+                    systemImage: appState.isWishlisted(product.id) ? "heart.slash.fill" : "heart.fill"
+                )
+            }
+            .tint(.pink)
+        }
+        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+            Button {
+                appState.addToCart(product)
+                HapticService.shared.play(.notification(.success))
+            } label: {
+                Label("Add to Cart", systemImage: "bag.badge.plus")
+            }
+            .tint(AppTheme.Colors.primary)
+        }
+    }
+}
+
+// MARK: - Search Row Shimmer
+
+private struct SearchRowShimmer: View {
+    var body: some View {
+        HStack(spacing: 12) {
+            ShimmerBox(width: 90, height: 90, cornerRadius: 12)
+            VStack(alignment: .leading, spacing: 8) {
+                ShimmerBox(width: 100, height: 10, cornerRadius: 5)
+                ShimmerBox(width: 160, height: 14, cornerRadius: 5)
+                ShimmerBox(width: 80, height: 10, cornerRadius: 5)
+                Spacer(minLength: 0)
+                ShimmerBox(width: 60, height: 16, cornerRadius: 5)
+            }
+        }
+        .frame(height: 90)
+        .padding(.vertical, 4)
     }
 }
 
@@ -247,4 +392,11 @@ struct FlowLayout: Layout {
             x += size.width + spacing
         }
     }
+}
+
+#Preview {
+    NavigationStack {
+        SearchView()
+    }
+    .environment(AppState())
 }

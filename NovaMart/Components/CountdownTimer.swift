@@ -60,3 +60,8 @@ struct TimerSeparator: View {
             }
     }
 }
+
+#Preview {
+    CountdownTimer(endDate: Date.now.addingTimeInterval(3600 * 5))
+        .padding()
+}
